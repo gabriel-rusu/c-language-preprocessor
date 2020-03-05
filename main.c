@@ -56,9 +56,9 @@ int process_arguments(char **arguments,int argument_count,HashMap *hashMap){
             addSymbol(arguments,index,hashMap);
             continue;
         }
-        if(is_invalid_flag(arguments[index]))
+        else if(is_invalid_flag(arguments[index]))
             return FAILED;
-            index++;
+        index++;
     }
 }
 
