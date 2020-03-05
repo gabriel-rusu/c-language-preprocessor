@@ -54,7 +54,6 @@ int process_arguments(char **arguments,int argument_count,HashMap *hashMap){
     while(index < argument_count){
         if(is_symbol(arguments[index])){
             addSymbol(arguments,index,hashMap);
-            continue;
         }
         else if(is_invalid_flag(arguments[index]))
             return FAILED;
