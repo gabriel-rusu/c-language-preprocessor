@@ -1,6 +1,5 @@
 move: build
-	cd ~/Desktop/Mini-C-Language-Preprocessor/checker/multi/; make -f Makefile.checker > result.out
-	
+	cd ./checker/multi/; make -f Makefile.checker > result.out
 build: 
 	gcc main.c -o2 -o ./checker/multi/so-cpp
 	
