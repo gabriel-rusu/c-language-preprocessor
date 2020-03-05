@@ -1,4 +1,4 @@
-make[1]: Entering directory '/home/legion/Mini-C-Language-Preprocessor/checker/multi'
+make[1]: Entering directory '/home/legion/Desktop/Mini-C-Language-Preprocessor/checker/multi'
 
                        = Testing - SO Preprocessor =
 
@@ -6,23 +6,23 @@ make[1]: Entering directory '/home/legion/Mini-C-Language-Preprocessor/checker/m
 Please download 'checkpatch.pl' from 'https://raw.githubusercontent.com/torvalds/linux/master/scripts/checkpatch.pl' and install it in your $PATH.
 
 00) Sources check...........................................failed  [ 0/95]
-A01) Test bad input..........................................failed  [ 0/95]
+01) Test bad input..........................................passed  [01/95]
 
-A02) Test bad parameters.....................................failed  [ 0/95]
+02) Test bad parameters.....................................passed  [01/95]
 
-A03) Test multiple files.....................................failed  [ 0/95]
+03) Test multiple files.....................................failed  [ 0/95]
 
 _test/outputs/test4.out vs _test/outputs/test4.ref:
---- _test/outputs/test4.out	2020-03-01 23:52:52.914417291 +0200
-+++ _test/outputs/test4.ref	2020-03-01 23:52:52.910415291 +0200
+--- _test/outputs/test4.out	2020-03-05 10:00:24.273587239 +0200
++++ _test/outputs/test4.ref	2020-03-05 10:00:24.273587239 +0200
 @@ -0,0 +1 @@
 +file passed through standard input
 04) Test stdin file.........................................failed  [ 0/95]
 04) Test stdin file - memcheck..............................failed  [ 0/95]
 
 _test/outputs/test5.out vs _test/outputs/test5.ref:
---- _test/outputs/test5.out	2020-03-01 23:52:52.950435293 +0200
-+++ _test/outputs/test5.ref	2020-03-01 23:52:52.946433293 +0200
+--- _test/outputs/test5.out	2020-03-05 10:00:24.297599240 +0200
++++ _test/outputs/test5.ref	2020-03-05 10:00:24.293597240 +0200
 @@ -0,0 +1 @@
 +file passed through parameter
 05) Test simple file........................................failed  [ 0/95]
@@ -33,8 +33,8 @@ _test/outputs/test6.out vs _test/outputs/test6.ref:
 06) Test simple out file - memcheck.........................failed  [ 0/95]
 
 _test/outputs/test7.out vs _test/outputs/test7.ref:
---- _test/outputs/test7.out	2020-03-01 23:52:53.002461295 +0200
-+++ _test/outputs/test7.ref	2020-03-01 23:52:53.002461295 +0200
+--- _test/outputs/test7.out	2020-03-05 10:00:24.341621241 +0200
++++ _test/outputs/test7.ref	2020-03-05 10:00:24.337619241 +0200
 @@ -0,0 +1,5 @@
 +int main() {
 +    int y = 1 + 1;
@@ -45,8 +45,8 @@ _test/outputs/test7.out vs _test/outputs/test7.ref:
 07) Test simple define - memcheck...........................failed  [ 0/95]
 
 _test/outputs/test8.out vs _test/outputs/test8.ref:
---- _test/outputs/test8.out	2020-03-01 23:52:53.030475296 +0200
-+++ _test/outputs/test8.ref	2020-03-01 23:52:53.026473296 +0200
+--- _test/outputs/test8.out	2020-03-05 10:00:24.361631242 +0200
++++ _test/outputs/test8.ref	2020-03-05 10:00:24.357629242 +0200
 @@ -0,0 +1,5 @@
 +int main() {
 +    int y = 1 + 1;
@@ -57,8 +57,8 @@ _test/outputs/test8.out vs _test/outputs/test8.ref:
 08) Test param define - memcheck............................failed  [ 0/95]
 
 _test/outputs/test9.out vs _test/outputs/test9.ref:
---- _test/outputs/test9.out	2020-03-01 23:52:53.062491298 +0200
-+++ _test/outputs/test9.ref	2020-03-01 23:52:53.058489297 +0200
+--- _test/outputs/test9.out	2020-03-05 10:00:24.381641243 +0200
++++ _test/outputs/test9.ref	2020-03-05 10:00:24.377639244 +0200
 @@ -0,0 +1,6 @@
 +int main() {
 +    int y = 1 + 1;
@@ -70,8 +70,8 @@ _test/outputs/test9.out vs _test/outputs/test9.ref:
 09) Test simple define/undef - memcheck.....................failed  [ 0/95]
 
 _test/outputs/test10.out vs _test/outputs/test10.ref:
---- _test/outputs/test10.out	2020-03-01 23:52:53.082501298 +0200
-+++ _test/outputs/test10.ref	2020-03-01 23:52:53.082501298 +0200
+--- _test/outputs/test10.out	2020-03-05 10:00:24.401651243 +0200
++++ _test/outputs/test10.ref	2020-03-05 10:00:24.401651243 +0200
 @@ -0,0 +1,6 @@
 +int main() {
 +    printf("%s\n", "10");
@@ -83,8 +83,8 @@ _test/outputs/test10.out vs _test/outputs/test10.ref:
 10) Test multiple defines - memcheck........................failed  [ 0/95]
 
 _test/outputs/test11.out vs _test/outputs/test11.ref:
---- _test/outputs/test11.out	2020-03-01 23:52:53.106513299 +0200
-+++ _test/outputs/test11.ref	2020-03-01 23:52:53.106513299 +0200
+--- _test/outputs/test11.out	2020-03-05 10:00:24.425663244 +0200
++++ _test/outputs/test11.ref	2020-03-05 10:00:24.425663244 +0200
 @@ -0,0 +1,5 @@
 +int main() {
 +    printf("%d\n", 10);
@@ -95,8 +95,8 @@ _test/outputs/test11.out vs _test/outputs/test11.ref:
 11) Test nested defines - memcheck..........................failed  [ 0/95]
 
 _test/outputs/test12.out vs _test/outputs/test12.ref:
---- _test/outputs/test12.out	2020-03-01 23:52:53.130525301 +0200
-+++ _test/outputs/test12.ref	2020-03-01 23:52:53.130525301 +0200
+--- _test/outputs/test12.out	2020-03-05 10:00:24.453677246 +0200
++++ _test/outputs/test12.ref	2020-03-05 10:00:24.453677246 +0200
 @@ -0,0 +1,5 @@
 +int main() {
 +    int y = 1 + 2 + 3 + 4 + 1;
@@ -107,8 +107,8 @@ _test/outputs/test12.out vs _test/outputs/test12.ref:
 12) Test multi-lines defines - memcheck.....................failed  [ 0/95]
 
 _test/outputs/test13.out vs _test/outputs/test13.ref:
---- _test/outputs/test13.out	2020-03-01 23:52:53.162541301 +0200
-+++ _test/outputs/test13.ref	2020-03-01 23:52:53.158539301 +0200
+--- _test/outputs/test13.out	2020-03-05 10:00:24.481691247 +0200
++++ _test/outputs/test13.ref	2020-03-05 10:00:24.481691247 +0200
 @@ -0,0 +1,4 @@
 +int main() {
 + printf("Yes!\n");
@@ -118,8 +118,8 @@ _test/outputs/test13.out vs _test/outputs/test13.ref:
 13) Test simple if true - memcheck..........................failed  [ 0/95]
 
 _test/outputs/test14.out vs _test/outputs/test14.ref:
---- _test/outputs/test14.out	2020-03-01 23:52:53.182551302 +0200
-+++ _test/outputs/test14.ref	2020-03-01 23:52:53.178549303 +0200
+--- _test/outputs/test14.out	2020-03-05 10:00:24.505703248 +0200
++++ _test/outputs/test14.ref	2020-03-05 10:00:24.505703248 +0200
 @@ -0,0 +1,3 @@
 +int main() {
 + return 0;
@@ -128,8 +128,8 @@ _test/outputs/test14.out vs _test/outputs/test14.ref:
 14) Test simple if false - memcheck.........................failed  [ 0/95]
 
 _test/outputs/test15.out vs _test/outputs/test15.ref:
---- _test/outputs/test15.out	2020-03-01 23:52:53.206563303 +0200
-+++ _test/outputs/test15.ref	2020-03-01 23:52:53.202561303 +0200
+--- _test/outputs/test15.out	2020-03-05 10:00:24.545723248 +0200
++++ _test/outputs/test15.ref	2020-03-05 10:00:24.545723248 +0200
 @@ -0,0 +1,4 @@
 +int main() {
 + printf("Yes!\n");
@@ -139,8 +139,8 @@ _test/outputs/test15.out vs _test/outputs/test15.ref:
 15) Test define if true - memcheck..........................failed  [ 0/95]
 
 _test/outputs/test16.out vs _test/outputs/test16.ref:
---- _test/outputs/test16.out	2020-03-01 23:52:53.234577304 +0200
-+++ _test/outputs/test16.ref	2020-03-01 23:52:53.230575304 +0200
+--- _test/outputs/test16.out	2020-03-05 10:00:24.569735250 +0200
++++ _test/outputs/test16.ref	2020-03-05 10:00:24.569735250 +0200
 @@ -0,0 +1,3 @@
 +int main() {
 + return 0
@@ -149,8 +149,8 @@ _test/outputs/test16.out vs _test/outputs/test16.ref:
 16) Test define if false - memcheck.........................failed  [ 0/95]
 
 _test/outputs/test17.out vs _test/outputs/test17.ref:
---- _test/outputs/test17.out	2020-03-01 23:52:53.258589305 +0200
-+++ _test/outputs/test17.ref	2020-03-01 23:52:53.254587305 +0200
+--- _test/outputs/test17.out	2020-03-05 10:00:24.597749251 +0200
++++ _test/outputs/test17.ref	2020-03-05 10:00:24.597749251 +0200
 @@ -0,0 +1,4 @@
 +int main() {
 + printf("True!\n");
@@ -160,8 +160,8 @@ _test/outputs/test17.out vs _test/outputs/test17.ref:
 17) Test simple if-else true - memcheck.....................failed  [ 0/95]
 
 _test/outputs/test18.out vs _test/outputs/test18.ref:
---- _test/outputs/test18.out	2020-03-01 23:52:53.282601306 +0200
-+++ _test/outputs/test18.ref	2020-03-01 23:52:53.278599306 +0200
+--- _test/outputs/test18.out	2020-03-05 10:00:24.621761252 +0200
++++ _test/outputs/test18.ref	2020-03-05 10:00:24.617759252 +0200
 @@ -0,0 +1,4 @@
 +int main() {
 + printf("False!\n");
@@ -171,8 +171,8 @@ _test/outputs/test18.out vs _test/outputs/test18.ref:
 18) Test simple if-else false - memcheck....................failed  [ 0/95]
 
 _test/outputs/test19.out vs _test/outputs/test19.ref:
---- _test/outputs/test19.out	2020-03-01 23:52:53.306613307 +0200
-+++ _test/outputs/test19.ref	2020-03-01 23:52:53.302611307 +0200
+--- _test/outputs/test19.out	2020-03-05 10:00:24.649775253 +0200
++++ _test/outputs/test19.ref	2020-03-05 10:00:24.649775253 +0200
 @@ -0,0 +1,4 @@
 +int main() {
 + printf("True!\n");
@@ -182,8 +182,8 @@ _test/outputs/test19.out vs _test/outputs/test19.ref:
 19) Test define if-else true - memcheck.....................failed  [ 0/95]
 
 _test/outputs/test20.out vs _test/outputs/test20.ref:
---- _test/outputs/test20.out	2020-03-01 23:52:53.330625308 +0200
-+++ _test/outputs/test20.ref	2020-03-01 23:52:53.330625308 +0200
+--- _test/outputs/test20.out	2020-03-05 10:00:24.685793254 +0200
++++ _test/outputs/test20.ref	2020-03-05 10:00:24.681791254 +0200
 @@ -0,0 +1,4 @@
 +int main() {
 + printf("False!\n");
@@ -193,8 +193,8 @@ _test/outputs/test20.out vs _test/outputs/test20.ref:
 20) Test define param if-else false - memcheck..............failed  [ 0/95]
 
 _test/outputs/test21.out vs _test/outputs/test21.ref:
---- _test/outputs/test21.out	2020-03-01 23:52:53.358639309 +0200
-+++ _test/outputs/test21.ref	2020-03-01 23:52:53.354637309 +0200
+--- _test/outputs/test21.out	2020-03-05 10:00:24.713807256 +0200
++++ _test/outputs/test21.ref	2020-03-05 10:00:24.709805255 +0200
 @@ -0,0 +1,3 @@
 +int main() {
 + return 0;
@@ -203,8 +203,8 @@ _test/outputs/test21.out vs _test/outputs/test21.ref:
 21) Test simple elif false - memcheck.......................failed  [ 0/95]
 
 _test/outputs/test22.out vs _test/outputs/test22.ref:
---- _test/outputs/test22.out	2020-03-01 23:52:53.382651310 +0200
-+++ _test/outputs/test22.ref	2020-03-01 23:52:53.382651310 +0200
+--- _test/outputs/test22.out	2020-03-05 10:00:24.745823257 +0200
++++ _test/outputs/test22.ref	2020-03-05 10:00:24.745823257 +0200
 @@ -0,0 +1,4 @@
 +int main() {
 + printf("True!\n");
@@ -214,8 +214,8 @@ _test/outputs/test22.out vs _test/outputs/test22.ref:
 22) Test simple elif true - memcheck........................failed  [ 0/95]
 
 _test/outputs/test23.out vs _test/outputs/test23.ref:
---- _test/outputs/test23.out	2020-03-01 23:52:53.410665311 +0200
-+++ _test/outputs/test23.ref	2020-03-01 23:52:53.410665311 +0200
+--- _test/outputs/test23.out	2020-03-05 10:00:24.777839258 +0200
++++ _test/outputs/test23.ref	2020-03-05 10:00:24.777839258 +0200
 @@ -0,0 +1,4 @@
 +int main() {
 + printf("True!\n");
@@ -225,8 +225,8 @@ _test/outputs/test23.out vs _test/outputs/test23.ref:
 23) Test simple elif-else true - memcheck...................failed  [ 0/95]
 
 _test/outputs/test24.out vs _test/outputs/test24.ref:
---- _test/outputs/test24.out	2020-03-01 23:52:53.438679312 +0200
-+++ _test/outputs/test24.ref	2020-03-01 23:52:53.438679312 +0200
+--- _test/outputs/test24.out	2020-03-05 10:00:24.809855259 +0200
++++ _test/outputs/test24.ref	2020-03-05 10:00:24.805853259 +0200
 @@ -0,0 +1,4 @@
 +int main() {
 + printf("Good!\n");
@@ -236,8 +236,8 @@ _test/outputs/test24.out vs _test/outputs/test24.ref:
 24) Test simple elif-else false - memcheck..................failed  [ 0/95]
 
 _test/outputs/test25.out vs _test/outputs/test25.ref:
---- _test/outputs/test25.out	2020-03-01 23:52:53.470695314 +0200
-+++ _test/outputs/test25.ref	2020-03-01 23:52:53.462691313 +0200
+--- _test/outputs/test25.out	2020-03-05 10:00:24.845873260 +0200
++++ _test/outputs/test25.ref	2020-03-05 10:00:24.845873260 +0200
 @@ -0,0 +1,7 @@
 +int main() {
 +    printf("ABC\n");
@@ -250,8 +250,8 @@ _test/outputs/test25.out vs _test/outputs/test25.ref:
 25) Test complex if-elif-else - memcheck....................failed  [ 0/95]
 
 _test/outputs/test26.out vs _test/outputs/test26.ref:
---- _test/outputs/test26.out	2020-03-01 23:52:53.490705314 +0200
-+++ _test/outputs/test26.ref	2020-03-01 23:52:53.490705314 +0200
+--- _test/outputs/test26.out	2020-03-05 10:00:24.877889261 +0200
++++ _test/outputs/test26.ref	2020-03-05 10:00:24.873887262 +0200
 @@ -0,0 +1,4 @@
 +int main()
 +{
@@ -261,8 +261,8 @@ _test/outputs/test26.out vs _test/outputs/test26.ref:
 26) Test simple ifdef false - memcheck......................failed  [ 0/95]
 
 _test/outputs/test27.out vs _test/outputs/test27.ref:
---- _test/outputs/test27.out	2020-03-01 23:52:53.526723315 +0200
-+++ _test/outputs/test27.ref	2020-03-01 23:52:53.526723315 +0200
+--- _test/outputs/test27.out	2020-03-05 10:00:24.905903263 +0200
++++ _test/outputs/test27.ref	2020-03-05 10:00:24.905903263 +0200
 @@ -0,0 +1,5 @@
 +int main()
 +{
@@ -273,8 +273,8 @@ _test/outputs/test27.out vs _test/outputs/test27.ref:
 27) Test simple ifdef true - memcheck.......................failed  [ 0/95]
 
 _test/outputs/test28.out vs _test/outputs/test28.ref:
---- _test/outputs/test28.out	2020-03-01 23:52:53.554737317 +0200
-+++ _test/outputs/test28.ref	2020-03-01 23:52:53.554737317 +0200
+--- _test/outputs/test28.out	2020-03-05 10:00:24.937919264 +0200
++++ _test/outputs/test28.ref	2020-03-05 10:00:24.937919264 +0200
 @@ -0,0 +1,5 @@
 +int main()
 +{
@@ -285,8 +285,8 @@ _test/outputs/test28.out vs _test/outputs/test28.ref:
 28) Test simple ifndef - memcheck...........................failed  [ 0/95]
 
 _test/outputs/test29.out vs _test/outputs/test29.ref:
---- _test/outputs/test29.out	2020-03-01 23:52:53.586753317 +0200
-+++ _test/outputs/test29.ref	2020-03-01 23:52:53.582751318 +0200
+--- _test/outputs/test29.out	2020-03-05 10:00:24.969935265 +0200
++++ _test/outputs/test29.ref	2020-03-05 10:00:24.969935265 +0200
 @@ -0,0 +1,5 @@
 +int main()
 +{
@@ -296,11 +296,11 @@ _test/outputs/test29.out vs _test/outputs/test29.ref:
 29) Test simple ifndef undef................................failed  [ 0/95]
 29) Test simple ifndef undef - memcheck.....................failed  [ 0/95]
 
-A30) Test bad include........................................failed  [ 0/95]
+30) Test bad include........................................passed  [01/95]
 
 _test/outputs/test31.out vs _test/outputs/test31.ref:
---- _test/outputs/test31.out	2020-03-01 23:52:53.634777320 +0200
-+++ _test/outputs/test31.ref	2020-03-01 23:52:53.634777320 +0200
+--- _test/outputs/test31.out	2020-03-05 10:00:25.013957267 +0200
++++ _test/outputs/test31.ref	2020-03-05 10:00:25.009955267 +0200
 @@ -0,0 +1,5 @@
 +int main()
 +{
@@ -311,8 +311,8 @@ _test/outputs/test31.out vs _test/outputs/test31.ref:
 31) Test double define params - memcheck....................failed  [ 0/95]
 
 _test/outputs/test32.out vs _test/outputs/test32.ref:
---- _test/outputs/test32.out	2020-03-01 23:52:53.654787320 +0200
-+++ _test/outputs/test32.ref	2020-03-01 23:52:53.654787320 +0200
+--- _test/outputs/test32.out	2020-03-05 10:00:25.049975268 +0200
++++ _test/outputs/test32.ref	2020-03-05 10:00:25.049975268 +0200
 @@ -0,0 +1,6 @@
 +int var;
 +int main()
@@ -324,8 +324,8 @@ _test/outputs/test32.out vs _test/outputs/test32.ref:
 32) Test simple include - memcheck..........................failed  [ 0/95]
 
 _test/outputs/test33.out vs _test/outputs/test33.ref:
---- _test/outputs/test33.out	2020-03-01 23:52:53.674797322 +0200
-+++ _test/outputs/test33.ref	2020-03-01 23:52:53.674797322 +0200
+--- _test/outputs/test33.out	2020-03-05 10:00:25.077989270 +0200
++++ _test/outputs/test33.ref	2020-03-05 10:00:25.073987269 +0200
 @@ -0,0 +1,6 @@
 +int var;
 +int main()
@@ -337,8 +337,8 @@ _test/outputs/test33.out vs _test/outputs/test33.ref:
 33) Test include directory - memcheck.......................failed  [ 0/95]
 
 _test/outputs/test34.out vs _test/outputs/test34.ref:
---- _test/outputs/test34.out	2020-03-01 23:52:53.698809322 +0200
-+++ _test/outputs/test34.ref	2020-03-01 23:52:53.698809322 +0200
+--- _test/outputs/test34.out	2020-03-05 10:00:25.106003270 +0200
++++ _test/outputs/test34.ref	2020-03-05 10:00:25.106003270 +0200
 @@ -0,0 +1,6 @@
 +int var;
 +int main()
@@ -350,8 +350,8 @@ _test/outputs/test34.out vs _test/outputs/test34.ref:
 34) Test include param - memcheck...........................failed  [ 0/95]
 
 _test/outputs/test35.out vs _test/outputs/test35.ref:
---- _test/outputs/test35.out	2020-03-01 23:52:53.722821323 +0200
-+++ _test/outputs/test35.ref	2020-03-01 23:52:53.718819324 +0200
+--- _test/outputs/test35.out	2020-03-05 10:00:25.138019272 +0200
++++ _test/outputs/test35.ref	2020-03-05 10:00:25.134017271 +0200
 @@ -0,0 +1,5 @@
 +int main()
 +{
@@ -362,8 +362,8 @@ _test/outputs/test35.out vs _test/outputs/test35.ref:
 35) Test include order - memcheck...........................failed  [ 0/95]
 
 _test/outputs/test36.out vs _test/outputs/test36.ref:
---- _test/outputs/test36.out	2020-03-01 23:52:53.754837324 +0200
-+++ _test/outputs/test36.ref	2020-03-01 23:52:53.750835324 +0200
+--- _test/outputs/test36.out	2020-03-05 10:00:25.170035273 +0200
++++ _test/outputs/test36.ref	2020-03-05 10:00:25.170035273 +0200
 @@ -0,0 +1,5 @@
 +int main()
 +{
@@ -374,8 +374,8 @@ _test/outputs/test36.out vs _test/outputs/test36.ref:
 36) Test include order no main - memcheck...................failed  [ 0/95]
 
 _test/outputs/test37.out vs _test/outputs/test37.ref:
---- _test/outputs/test37.out	2020-03-01 23:52:53.782851326 +0200
-+++ _test/outputs/test37.ref	2020-03-01 23:52:53.782851326 +0200
+--- _test/outputs/test37.out	2020-03-05 10:00:25.198049274 +0200
++++ _test/outputs/test37.ref	2020-03-05 10:00:25.198049274 +0200
 @@ -0,0 +1,6 @@
 +int var;
 +int main()
@@ -386,20 +386,8 @@ _test/outputs/test37.out vs _test/outputs/test37.ref:
 37) Test include guard......................................failed  [ 0/95]
 37) Test include guard - memcheck...........................failed  [ 0/95]
 
-_test/outputs/test38.out vs _test/outputs/test38.ref:
---- _test/outputs/test38.out	2020-03-01 23:52:53.826873327 +0200
-+++ _test/outputs/test38.ref	2020-03-01 23:52:53.814867327 +0200
-@@ -1 +1,5 @@
--A
-\ No newline at end of file
-+int main()
-+{
-+ fprintf(stderr, custom-debugging "\n");
-+ return 0;
-+}
 38) Test everything.........................................failed  [ 0/95]
 
+                                                            Total:  [03/95]
 
-                                                            Total:  [00/95]
-
-make[1]: Leaving directory '/home/legion/Mini-C-Language-Preprocessor/checker/multi'
+make[1]: Leaving directory '/home/legion/Desktop/Mini-C-Language-Preprocessor/checker/multi'
