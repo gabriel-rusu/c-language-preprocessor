@@ -58,10 +58,11 @@ int process(FILE *file_in,FILE *file_out,HashMap *hashMap){
     char prev_line[256] = "";
     while (fscanf(file_in,"%[^\n]s",line)!=EOF)
     {
-        fprintf(file_out,"%s\n",line);
         if(strcmp(line,prev_line)==0)
             break;
         memcpy(prev_line,line,256);
+        fprintf(file_out,"%s\n",line);
+
     }
     return SUCCESS;
 }
