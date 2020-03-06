@@ -10,6 +10,7 @@
 #define INPUT_FILE_EXTENSION ".in"
 #define OUTPUT_FILE_EXTENSION ".out"
 #define INVALID_FILE_EXTENSION "."
+#define SUCCESS 13
 
 
 typedef struct Node{
@@ -40,20 +41,29 @@ int main(int argc ,char **argv)
     HashMap *hashMap = NULL;
     FILE *file_in = stdin,*file_out = stdout;
     create_new(&hashMap,argc);
-    if(process_arguments(argv,argc,hashMap,&file_in,&file_out) == FAILED)
+    if(process_arguments(argv,argc,hashMap,&file_in,&file_out) == FAILED){
+        printf("ARGUMENT PROCESSING FAILED");
         exit(EXIT_FAILURE);
+    }
     process(file_in,file_out,hashMap);
+    
     freeMap(&hashMap);
+    fclose(file_out);
+    fclose(file_in);
     return 0;
 }
 
 int process(FILE *file_in,FILE *file_out,HashMap *hashMap){
     char line[256];
-    while (!fscanf(file_in,"%[^\n]s",line)!=EOF)
+    char prev_line[256] = "";
+    while (fscanf(file_in,"%[^\n]s",line)!=EOF)
     {
         fprintf(file_out,"%s\n",line);
+        if(strcmp(line,prev_line)==0)
+            break;
+        memcpy(prev_line,line,256);
     }
-    
+    return SUCCESS;
 }
 
 bool is_file(char * name,char * extension){
@@ -95,7 +105,7 @@ int process_arguments(char **arguments,int argument_count,HashMap *hashMap,FILE 
             verify(*file_in = fopen(arguments[index],"r"),__LINE__);
         }else if(is_file(arguments[index],OUTPUT_FILE_EXTENSION)){
             verify(*file_out = fopen(arguments[index],"w"),__LINE__);
-        }else if(is_file(arguments[index],INVALID_FILE_EXTENSION))
+        }else if(is_file(arguments[index],INVALID_FILE_EXTENSION)&& (is_file(arguments[index],"./")==false))
             return FAILED;
         else if(is_invalid_flag(arguments[index]))
             return FAILED;
