@@ -64,7 +64,6 @@ void delete(Node **node){
     free((*node)->value);
     free((*node)->key);
     free(&(*node));
-
 }
 
 
