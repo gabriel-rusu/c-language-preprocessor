@@ -35,12 +35,44 @@ bool is_file(char * name,char * extension);
 void verify(void *pointer,int line_number);
 int process(FILE *file_in,FILE *file_out,HashMap *hashMap);
 
+int hash(char *key,int size){
+    int sum = 0;
+    for(int index = 0;key[index] != '\0';index++)
+        sum+= key[index];
+    return sum%size;
+}
+
+void add_at(Node *head,char *key,char *value){
+    Node *newNode = malloc(sizeof(Node));
+    if(head->address){
+        Node *temp =  head->address;
+        newNode->address = temp;
+        head->address = newNode;
+    }else{
+        head->address = newNode;
+    }
+    newNode->key = strdup(key);
+    newNode->value = strdup(value);
+        
+}
+
+void add_into(HashMap * hashMap,char *key,char *value){
+    add_at(hashMap->array[hash(key,hashMap->size)],key,value);
+}
+
+void delete(Node **node){
+    free((*node)->value);
+    free((*node)->key);
+    free(&(*node));
+
+}
+
 
 int main(int argc ,char **argv)
 {
     HashMap *hashMap = NULL;
     FILE *file_in = stdin,*file_out = stdout;
-    create_new(&hashMap,argc);
+    create_new(&hashMap,argc+1);
     if(process_arguments(argv,argc,hashMap,&file_in,&file_out) == FAILED){
         printf("ARGUMENT PROCESSING FAILED");
         exit(EXIT_FAILURE);
