@@ -1,11 +1,21 @@
+CC = gcc
+FLAGS = -Wall -g -o2 -o
+SOURCE = main.c 
+EXECUTABLE_PATH = ./checker/multi/so-cpp
+EXECUTABLE = so-cpp
+TEST_IN = ceva.txt
+TEST_OUT = out.out
+
+
+
 move: build
 	cd ./checker/multi/; make -f Makefile.checker > result.out
 build: 
-	gcc main.c -o2 -o ./checker/multi/so-cpp
+	$(CC) $(SOURCE) $(FLAGS) $(EXECUTABLE_PATH)
 	
 local: build
-	gcc main.c -o2 -o so-cpp
+	$(CC) $(SOURCE) $(FLAGS) $(EXECUTABLE)
 run: local
-	./so-cpp < ceva.txt > out.out
+	./$(EXECUTABLE) < $(TEST_IN) > $(TEST_OUT)
 
 
