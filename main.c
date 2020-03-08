@@ -28,7 +28,7 @@ int create_new(LinkedList ** linkedList);
 int process_arguments(char **arguments,int argument_count,LinkedList *linkedList,FILE **file_in,FILE **file_out);
 bool is_invalid_flag(char *argument);
 bool is_symbol(char *argument);
-void freeMap(LinkedList **linkedList);
+void freeList(LinkedList **linkedList);
 void addSymbol(char **arguments,int index, LinkedList* linkedList);
 
 bool is_file(char * name,char * extension);
@@ -50,6 +50,14 @@ void add_into(LinkedList * linkedList,char *key,char *value){
         linkedList->head->address = oldHead;
     }
 }
+
+void freeList(LinkedList **linkedList){
+    if(*linkedList){
+        deleteList(*linkedList);
+        free(*linkedList);
+    }
+}
+
 void delete(Node *node){
     free(node->value);
     free(node->key);
@@ -80,7 +88,7 @@ int main(int argc ,char **argv)
         exit(EXIT_FAILURE);
     }
     process(file_in,file_out,linkedList);
-    free(linkedList);
+    freeList(linkedList);
     fclose(file_out);
     fclose(file_in);
     return 0;
@@ -141,12 +149,31 @@ int process_arguments(char **arguments,int argument_count,LinkedList *linkedList
 }
 
 void addSymbol(char **arguments,int index, LinkedList* linkedList){
-    return;
+    if(strstr(arguments[index],"="))
+        {
+            char temp[55] = &(arguments[index][2]);
+            char *key,*value;
+            key = strtok(temp,"=");
+            if(key!=NULL)
+                value = strtok(NULL,temp);
+            else value="";
+            add_into(linkedList,key,value);
+        }else{
+            char temp[55] = arguments[index+1];
+            char *key,*value;
+            key = strtok(temp,"=");
+            if(key!=NULL)
+                value = strtok(NULL,"=");
+            else value="";
+            add_into(linkedList,key,value);
+        }
+    
+        return;
 }
 
 bool is_symbol(char *argument){
     if(strlen(argument)>=2)
-        return strcmp(argument,"-D") == 0 ? true : (argument[0] == '-' && argument[1] == 'D');
+        return strcmp(argument,SYMBOL_FLAG) == 0 ? true : strstr(argument,SYMBOL_FLAG);
     else return false;
 }
 
