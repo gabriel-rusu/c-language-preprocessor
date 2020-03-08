@@ -35,7 +35,7 @@ int process_arguments(char **arguments,int argument_count,LinkedList *linkedList
 bool is_invalid_flag(char *argument);
 bool is_symbol(char *argument);
 void freeList(LinkedList **linkedList);
-void addSymbol(char **arguments,int *index, LinkedList* linkedList);
+void addSymbol(char **arguments,int *index, LinkedList* linkedList,int argc);
 
 bool is_file(char * name,char * extension);
 void verify(void *pointer,int line_number);
@@ -172,7 +172,7 @@ int process_arguments(char **arguments,int argument_count,LinkedList *linkedList
     int index = 0;
     while(index < argument_count){
         if(is_symbol(arguments[index])){
-            addSymbol(arguments,&index,linkedList);
+            addSymbol(arguments,&index,linkedList,argument_count);
         }
         else if(is_file(arguments[index],INPUT_FILE_EXTENSION)){
             verify(*file_in = fopen(arguments[index],"r"),__LINE__);
@@ -187,7 +187,7 @@ int process_arguments(char **arguments,int argument_count,LinkedList *linkedList
     return 0;
 }
 
-void addSymbol(char **arguments,int* index, LinkedList* linkedList){
+void addSymbol(char **arguments,int* index, LinkedList* linkedList,int argc){
     if(strstr(arguments[*index],SYMBOL_FLAG)&&strlen(arguments[*index])>2)
         {
             exit(EXIT_FAILURE);
@@ -203,6 +203,8 @@ void addSymbol(char **arguments,int* index, LinkedList* linkedList){
             else value="";
             add_into(linkedList,key,value);
         }else{
+            if(argc==*index+1)
+                return;
             char temp[55];
             memcpy(temp,arguments[*index+1],strlen(arguments[*index+1])+1);
             char *key,*value;
@@ -212,7 +214,7 @@ void addSymbol(char **arguments,int* index, LinkedList* linkedList){
                 if(!value)
                     value = "";
             }else value="";
-            // printf("key: %s\nvalue: %s\n",key,value);
+            printf("key: %s\nvalue: %s\n",key,value);
             add_into(linkedList,key,value);
             (*index)++;
         }
