@@ -115,6 +115,9 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
                     value = "";
             }
             add_into(linkedList,key,value);
+            printf("-> key: %s\n",key);
+            printf("-> value: %s\n",value);
+
         }else if(strstr(line,"#include")){
 
         }else if(strstr(line,"#undef")){
@@ -137,8 +140,6 @@ int process(FILE *file_in,FILE *file_out,LinkedList *linkedList){
             break;
         memcpy(prev_line,line,256);
         process_input(line,file_out,linkedList);
-        
-
     }
     return SUCCESS;
 }
