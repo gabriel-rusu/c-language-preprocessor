@@ -98,7 +98,7 @@ void prepare(char *line,LinkedList *linkedList)
     while(head){
         if(strstr(line,head->key))
             replace(line,head->key,head->value);
-        else head = head->address;
+        head = head->address;
     }
 }
 
@@ -190,7 +190,6 @@ int process_arguments(char **arguments,int argument_count,LinkedList *linkedList
 void addSymbol(char **arguments,int* index, LinkedList* linkedList,int argc){
     if(strstr(arguments[*index],SYMBOL_FLAG)&&strlen(arguments[*index])>2)
         {
-            return;
             char temp[55];
             memcpy(temp,&(arguments[*index][1]),strlen(&(arguments[*index][1]))+1);
             char *key,*value;
