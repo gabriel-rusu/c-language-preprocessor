@@ -26,6 +26,9 @@ typedef struct LinkedList{
 
 
 void process_input(char *line,FILE *file_out,LinkedList * linkedList);
+void verify_write_for(char *line){
+    printf("Mesaj: %s\n",line);
+}
 
 int create_new(LinkedList ** linkedList);
 int process_arguments(char **arguments,int argument_count,LinkedList *linkedList,FILE **file_in,FILE **file_out);
@@ -65,9 +68,9 @@ int main(int argc ,char **argv)
 int find_offset_for(char *line){
     char *pos;
     int index = 0;
-    if((pos = strchr(line,'"'))!=NULL){
+    if((pos = strchr(line,'\"'))!=NULL){
         index = pos - line;
-        return (strchr(line+index+1,'"') - line + 1);
+        return ((strchr(line+index+1,'\"') - line) + 1);
     }
     return 0;
 }
@@ -100,13 +103,14 @@ void prepare(char *line,LinkedList *linkedList)
 }
 
 void process_input(char *line,FILE *file_out,LinkedList * linkedList){
-    char buffer[BUFFER_SIZE];
+    char temp[BUFFER_SIZE];
     char delimiters[] = " \n";
-    char *word=NULL,*key=NULL,*value="";
-    memcpy(buffer,line,strlen(line)+1);
-    if(strstr(line,"#")){
+    char *word=NULL,*key=NULL,*value=NULL;
+   
+    strcpy(temp,line);
+    if(strchr(line,'#')){
         if(strstr(line,"#define")){
-            word = strtok(buffer,delimiters);
+            word = strtok(temp,delimiters);
             if(word)
                 key = strtok(NULL,delimiters);
             if(key){
@@ -115,33 +119,29 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
                     value = "";
             }
             add_into(linkedList,key,value);
-            printf("-> key: %s\n",key);
-            printf("-> value: %s\n",value);
-
         }else if(strstr(line,"#include")){
-
+            
         }else if(strstr(line,"#undef")){
             //TODO: delete the node with key after undef
         }
     }else{
-        printf("%s\n",line);
         prepare(line,linkedList);
-        printf("%s\n",line);
-        fprintf(file_out,"%s\n",line);
-        fflush(file_out);
+        if(strlen(line)!=1)
+        fprintf(file_out,"%s",line);
     }
-    
-
 }
+
 
 int process(FILE *file_in,FILE *file_out,LinkedList *linkedList){
     char line[BUFFER_SIZE];
     char prev_line[BUFFER_SIZE] = "";
-    while (fscanf(file_in,"%[^\n]s",line)!=EOF)
+    while (fgets(line,BUFFER_SIZE,file_in)!=NULL)
     {
-        if(strcmp(line,prev_line)==0)
+        if(strcmp(line,prev_line)==0){
+            printf("S-a bulit fisierul ?");
             break;
-        memcpy(prev_line,line,256);
+        }
+        strcpy(prev_line,line);
         process_input(line,file_out,linkedList);
     }
     return SUCCESS;

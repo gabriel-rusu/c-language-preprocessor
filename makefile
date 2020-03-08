@@ -3,7 +3,7 @@ FLAGS = -Wall -g -o2 -o
 SOURCE = main.c 
 EXECUTABLE_PATH = ./checker/multi/so-cpp
 EXECUTABLE = so-cpp
-TEST_IN = ceva.txt
+TEST_IN = checker/multi/_test/inputs/test7.in
 TEST_OUT = out.out
 
 
@@ -13,14 +13,13 @@ move: build
 build: 
 	$(CC) $(SOURCE) $(FLAGS) $(EXECUTABLE_PATH)
 	
-local: build
-	$(CC) $(SOURCE) $(FLAGS) $(EXECUTABLE)
-run: local
+test: test_build
 	./$(EXECUTABLE) < $(TEST_IN) > $(TEST_OUT)
+	# rm -f $(EXECUTABLE)
 
-test:
+test_build:
 	$(CC) $(SOURCE) $(FLAGS) $(EXECUTABLE)
-	rm -f $(EXECUTABLE)
+	
 
 
 
