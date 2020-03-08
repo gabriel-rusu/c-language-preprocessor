@@ -1,5 +1,0 @@
-int main()
-{
- printf("DEBUG\n");
- return 0;
-}
