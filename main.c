@@ -124,7 +124,9 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
             //TODO: delete the node with key after undef
         }
     }else{
+        printf("%s\n",line);
         prepare(line,linkedList);
+        printf("%s\n",line);
         fprintf(file_out,"%s\n",line);
     }
     
