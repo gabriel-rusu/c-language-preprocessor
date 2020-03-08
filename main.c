@@ -24,6 +24,9 @@ typedef struct LinkedList{
     Node *head;
 }LinkedList;
 
+
+void process_input(char *line,FILE *file_out,LinkedList * linkedList);
+
 int create_new(LinkedList ** linkedList);
 int process_arguments(char **arguments,int argument_count,LinkedList *linkedList,FILE **file_in,FILE **file_out);
 bool is_invalid_flag(char *argument);
@@ -34,62 +37,13 @@ void addSymbol(char **arguments,int index, LinkedList* linkedList);
 bool is_file(char * name,char * extension);
 void verify(void *pointer,int line_number);
 int process(FILE *file_in,FILE *file_out,LinkedList *linkedList);
-
-
-void add_into(LinkedList * linkedList,char *key,char *value){
-    (linkedList->size)++;
-    if(!(linkedList->head)){
-        linkedList->head = malloc(sizeof(Node));
-        linkedList->head->key = strdup(key);
-        linkedList->head->value = strdup(value);
-        linkedList->head->address = NULL;
-    }else{
-        Node *oldHead = linkedList->head;
-        linkedList->head = malloc(sizeof(Node));
-        linkedList->head->key = strdup(key);
-        linkedList->head->value = strdup(value);
-        linkedList->head->address = oldHead;
-    }
-}
-
-bool search(char *word,LinkedList *linkedList){
-    Node *head = linkedList->head;
-    while(head){
-        if(strcmp(head->key,word)==0)
-            return true;
-    }
-    return false;
-}
-
-void delete(Node *node){
-    free(node->value);
-    free(node->key);
-    free(node);
-}
-
-void deleteList(LinkedList* list){
-    Node *head = list->head;
-    Node *next;
-    while(head){
-        next = head->address;
-        delete(head);
-        head = next;
-    }
-    list->head = NULL;
-}
-
-void freeList(LinkedList **linkedList){
-    if(*linkedList){
-        deleteList(*linkedList);
-        free(*linkedList);
-    }
-}
-
-
-
-
-
-
+int find_offset_for(char *line);
+void add_into(LinkedList * linkedList,char *key,char *value);
+bool search(char *word,LinkedList *linkedList);
+char * getValueOf(char *key,LinkedList *linkedList);
+void delete(Node *node);
+void freeList(LinkedList **linkedList);
+void deleteList(LinkedList* list);
 
 
 int main(int argc ,char **argv)
@@ -108,15 +62,79 @@ int main(int argc ,char **argv)
     return 0;
 }
 
-int process(FILE *file_in,FILE *file_out,LinkedList *hashMap){
-    char line[256];
-    char prev_line[256] = "";
+int find_offset_for(char *line){
+    char *pos;
+    int index = 0;
+    if((pos = strchr(line,'"'))!=NULL){
+        index = pos - line;
+        return (strchr(line+index+1,'"') - line + 1);
+    }
+    return 0;
+}
+
+void replace(char *line,char *key,char *value)
+{
+    char temp[BUFFER_SIZE];
+    int index = 0;
+    int offset = find_offset_for(line);
+    int length_of_key = strlen(key);
+    char *position;
+    while((position = strstr(line+offset,key))!=NULL){
+        strcpy(temp,line);
+        index = position - line;
+        line[index] = '\0';
+        strcat(line,value);
+        strcat(line,temp+index+length_of_key);
+    }
+
+}
+
+void prepare(char *line,LinkedList *linkedList)
+{
+    Node *head = linkedList->head;
+    while(head){
+        if(strstr(line,head->key))
+            replace(line,head->key,head->value);
+        else head = head->address;
+    }
+}
+
+void process_input(char *line,FILE *file_out,LinkedList * linkedList){
+    char buffer[BUFFER_SIZE];
+    char delimiters[] = " \n";
+    char *word=NULL,*key=NULL,*value="";
+    memcpy(buffer,line,strlen(line)+1);
+    if(strstr(line,"#")){
+        if(strstr(line,"#define")){
+            word = strtok(buffer,delimiters);
+            if(word)
+                key = strtok(NULL,delimiters);
+            if(key){
+                value = strtok(NULL,delimiters);
+                if(!value)
+                    value = "";
+            }
+            add_into(linkedList,key,value);
+        }else if(strstr(line,"#include")){
+
+        }
+    }else{
+        prepare(line,linkedList);
+    }
+    fprintf(file_out,"%s\n",line);
+
+}
+
+int process(FILE *file_in,FILE *file_out,LinkedList *linkedList){
+    char line[BUFFER_SIZE];
+    char prev_line[BUFFER_SIZE] = "";
     while (fscanf(file_in,"%[^\n]s",line)!=EOF)
     {
         if(strcmp(line,prev_line)==0)
             break;
         memcpy(prev_line,line,256);
-        fprintf(file_out,"%s\n",line);
+        process_input(line,file_out,linkedList);
+        
 
     }
     return SUCCESS;
@@ -203,4 +221,63 @@ bool is_invalid_flag(char *argument){
     if(strlen(argument) >= 1)
         return argument[0] == FLAG_CHAR;
     return false;
+}
+
+void add_into(LinkedList * linkedList,char *key,char *value){
+    (linkedList->size)++;
+    if(!(linkedList->head)){
+        linkedList->head = malloc(sizeof(Node));
+        linkedList->head->key = strdup(key);
+        linkedList->head->value = strdup(value);
+        linkedList->head->address = NULL;
+    }else{
+        Node *oldHead = linkedList->head;
+        linkedList->head = malloc(sizeof(Node));
+        linkedList->head->key = strdup(key);
+        linkedList->head->value = strdup(value);
+        linkedList->head->address = oldHead;
+    }
+}
+
+bool search(char *word,LinkedList *linkedList){
+    Node *head = linkedList->head;
+    while(head){
+        if(strcmp(head->key,word)==0)
+            return true;
+    }
+    return false;
+}
+
+char * getValueOf(char *key,LinkedList *linkedList){
+    Node *head = linkedList->head;
+    while(head){
+        if(strcmp(head->key,key)==0)
+            return head->value;
+    }
+    return "";
+}
+
+
+void delete(Node *node){
+    free(node->value);
+    free(node->key);
+    free(node);
+}
+
+void deleteList(LinkedList* list){
+    Node *head = list->head;
+    Node *next;
+    while(head){
+        next = head->address;
+        delete(head);
+        head = next;
+    }
+    list->head = NULL;
+}
+
+void freeList(LinkedList **linkedList){
+    if(*linkedList){
+        deleteList(*linkedList);
+        free(*linkedList);
+    }
 }
