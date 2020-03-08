@@ -190,6 +190,7 @@ int process_arguments(char **arguments,int argument_count,LinkedList *linkedList
 void addSymbol(char **arguments,int index, LinkedList* linkedList){
     if(strstr(arguments[index],SYMBOL_FLAG)&&strlen(arguments[index])>2)
         {
+            exit(EXIT_FAILURE);
             char temp[55];
             memcpy(temp,&(arguments[index][2]),strlen(&(arguments[index][2]))+1);
             char *key,*value;
@@ -197,7 +198,7 @@ void addSymbol(char **arguments,int index, LinkedList* linkedList){
             if(key!=NULL){
                 value = strtok(NULL,temp);
                 if(!value)
-                    value = "";
+                    value = "";   
             }
             else value="";
             add_into(linkedList,key,value);
