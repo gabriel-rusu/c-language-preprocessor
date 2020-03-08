@@ -1,0 +1,5 @@
+int main()
+{
+ printf("VAR0 = %d\n", VAR0);
+ return 0;
+}

@@ -19,72 +19,74 @@ typedef struct Node{
     struct Node *address;
 }Node;
 
-typedef struct HashMap{
+typedef struct LinkedList{
     int size;
-    Node **array;
-}HashMap;
+    Node *head;
+}LinkedList;
 
-int create_new(HashMap ** hashMap,int size);
-int process_arguments(char **arguments,int argument_count,HashMap *hashMap,FILE **file_in,FILE **file_out);
+int create_new(LinkedList ** linkedList);
+int process_arguments(char **arguments,int argument_count,LinkedList *linkedList,FILE **file_in,FILE **file_out);
 bool is_invalid_flag(char *argument);
 bool is_symbol(char *argument);
-void freeMap(HashMap **hashMap);
-void addSymbol(char **arguments,int index, HashMap* hashMap);
+void freeMap(LinkedList **linkedList);
+void addSymbol(char **arguments,int index, LinkedList* linkedList);
 
 bool is_file(char * name,char * extension);
 void verify(void *pointer,int line_number);
-int process(FILE *file_in,FILE *file_out,HashMap *hashMap);
+int process(FILE *file_in,FILE *file_out,LinkedList *linkedList);
 
-int hash(char *key,int size){
-    int sum = 0;
-    for(int index = 0;key[index] != '\0';index++)
-        sum+= key[index];
-    return sum%size;
-}
 
-void add_at(Node *head,char *key,char *value){
-    Node *newNode = malloc(sizeof(Node));
-    if(head->address){
-        Node *temp =  head->address;
-        newNode->address = temp;
-        head->address = newNode;
+void add_into(LinkedList * linkedList,char *key,char *value){
+    if(!(linkedList->head)){
+        linkedList->head = malloc(sizeof(Node));
+        linkedList->head->key = strdup(key);
+        linkedList->head->value = strdup(value);
+        linkedList->head->address = NULL;
     }else{
-        head->address = newNode;
+        Node *oldHead = linkedList->head;
+        linkedList->head = malloc(sizeof(Node));
+        linkedList->head->key = strdup(key);
+        linkedList->head->value = strdup(value);
+        linkedList->head->address = oldHead;
     }
-    newNode->key = strdup(key);
-    newNode->value = strdup(value);
-        
+}
+void delete(Node *node){
+    free(node->value);
+    free(node->key);
+    free(node);
 }
 
-void add_into(HashMap * hashMap,char *key,char *value){
-    add_at(hashMap->array[hash(key,hashMap->size)],key,value);
+
+void deleteList(LinkedList* list){
+    Node *head = list->head;
+    Node *next;
+    while(head){
+        next = head->address;
+        delete(head);
+        head = next;
+    }
+    list->head = NULL;
 }
 
-void delete(Node **node){
-    free((*node)->value);
-    free((*node)->key);
-    free(&(*node));
-}
 
 
 int main(int argc ,char **argv)
 {
-    HashMap *hashMap = NULL;
+    LinkedList *linkedList = NULL;
     FILE *file_in = stdin,*file_out = stdout;
-    create_new(&hashMap,argc+1);
-    if(process_arguments(argv,argc,hashMap,&file_in,&file_out) == FAILED){
-        printf("ARGUMENT PROCESSING FAILED");
+    create_new(&linkedList);
+    if(process_arguments(argv,argc,linkedList,&file_in,&file_out) == FAILED){
+        printf("ARGUMENT PROCESSING FAILED\n");
         exit(EXIT_FAILURE);
     }
-    process(file_in,file_out,hashMap);
-    
-    freeMap(&hashMap);
+    process(file_in,file_out,linkedList);
+    free(linkedList);
     fclose(file_out);
     fclose(file_in);
     return 0;
 }
 
-int process(FILE *file_in,FILE *file_out,HashMap *hashMap){
+int process(FILE *file_in,FILE *file_out,LinkedList *hashMap){
     char line[256];
     char prev_line[256] = "";
     while (fscanf(file_in,"%[^\n]s",line)!=EOF)
@@ -102,13 +104,7 @@ bool is_file(char * name,char * extension){
     return strstr(name,extension)!=NULL;
 }
 
-void freeMap(HashMap **hashMap){
-    if(*hashMap){
-        free((*hashMap)->array);
-        free(*hashMap);
-        *hashMap = NULL;
-    }
-}
+
 
 void verify(void *pointer,int line_number){
     if(pointer==NULL)
@@ -118,20 +114,18 @@ void verify(void *pointer,int line_number){
     }
 }
 
-int create_new(HashMap ** hashMap,int size){
-    if(size<=0)
-        return 0;
-    verify((*hashMap) = malloc(sizeof(HashMap)),__LINE__);
-    (*hashMap)->size = size;
-    verify((*hashMap)->array = malloc(sizeof(Node*)*size),__LINE__);
+int create_new(LinkedList ** linkedList){
+    verify((*linkedList) = malloc(sizeof(LinkedList)),__LINE__);
+    (*linkedList)->size = 0;
+    verify((*linkedList)->head = NULL,__LINE__);
     return 0;
 }
 
-int process_arguments(char **arguments,int argument_count,HashMap *hashMap,FILE **file_in,FILE **file_out){
+int process_arguments(char **arguments,int argument_count,LinkedList *linkedList,FILE **file_in,FILE **file_out){
     int index = 0;
     while(index < argument_count){
         if(is_symbol(arguments[index])){
-            addSymbol(arguments,index,hashMap);
+            addSymbol(arguments,index,linkedList);
         }
         else if(is_file(arguments[index],INPUT_FILE_EXTENSION)){
             verify(*file_in = fopen(arguments[index],"r"),__LINE__);
@@ -146,7 +140,7 @@ int process_arguments(char **arguments,int argument_count,HashMap *hashMap,FILE 
     return 0;
 }
 
-void addSymbol(char **arguments,int index, HashMap* hashMap){
+void addSymbol(char **arguments,int index, LinkedList* linkedList){
     return;
 }
 

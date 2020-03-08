@@ -1,0 +1,5 @@
+int main()
+{
+ fprintf(stderr, custom-debugging "\n");
+ return 0;
+}
