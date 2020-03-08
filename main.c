@@ -117,7 +117,7 @@ void verify(void *pointer,int line_number){
 int create_new(LinkedList ** linkedList){
     verify((*linkedList) = malloc(sizeof(LinkedList)),__LINE__);
     (*linkedList)->size = 0;
-    verify((*linkedList)->head = NULL,__LINE__);
+    (*linkedList)->head = NULL;
     return 0;
 }
 
