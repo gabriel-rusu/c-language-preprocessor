@@ -51,19 +51,11 @@ void add_into(LinkedList * linkedList,char *key,char *value){
     }
 }
 
-void freeList(LinkedList **linkedList){
-    if(*linkedList){
-        deleteList(*linkedList);
-        free(*linkedList);
-    }
-}
-
 void delete(Node *node){
     free(node->value);
     free(node->key);
     free(node);
 }
-
 
 void deleteList(LinkedList* list){
     Node *head = list->head;
@@ -75,6 +67,18 @@ void deleteList(LinkedList* list){
     }
     list->head = NULL;
 }
+
+void freeList(LinkedList **linkedList){
+    if(*linkedList){
+        deleteList(*linkedList);
+        free(*linkedList);
+    }
+}
+
+
+
+
+
 
 
 
@@ -88,7 +92,7 @@ int main(int argc ,char **argv)
         exit(EXIT_FAILURE);
     }
     process(file_in,file_out,linkedList);
-    freeList(linkedList);
+    freeList(&linkedList);
     fclose(file_out);
     fclose(file_in);
     return 0;
@@ -151,7 +155,8 @@ int process_arguments(char **arguments,int argument_count,LinkedList *linkedList
 void addSymbol(char **arguments,int index, LinkedList* linkedList){
     if(strstr(arguments[index],"="))
         {
-            char temp[55] = &(arguments[index][2]);
+            char temp[55];
+            memcpy(temp,&(arguments[index][2]),strlen(&(arguments[index][2]))+1);
             char *key,*value;
             key = strtok(temp,"=");
             if(key!=NULL)
@@ -159,7 +164,8 @@ void addSymbol(char **arguments,int index, LinkedList* linkedList){
             else value="";
             add_into(linkedList,key,value);
         }else{
-            char temp[55] = arguments[index+1];
+            char temp[55];
+            memcpy(temp,arguments,strlen(arguments[index])+1);
             char *key,*value;
             key = strtok(temp,"=");
             if(key!=NULL)
@@ -173,7 +179,7 @@ void addSymbol(char **arguments,int index, LinkedList* linkedList){
 
 bool is_symbol(char *argument){
     if(strlen(argument)>=2)
-        return strcmp(argument,SYMBOL_FLAG) == 0 ? true : strstr(argument,SYMBOL_FLAG);
+        return strcmp(argument,SYMBOL_FLAG) == 0 ? true : strstr(argument,SYMBOL_FLAG)!=NULL;
     else return false;
 }
 
