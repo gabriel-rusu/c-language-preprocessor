@@ -18,4 +18,9 @@ local: build
 run: local
 	./$(EXECUTABLE) < $(TEST_IN) > $(TEST_OUT)
 
+test:
+	$(CC) $(SOURCE) $(FLAGS) $(EXECUTABLE)
+	rm -f $(EXECUTABLE)
+
+
 

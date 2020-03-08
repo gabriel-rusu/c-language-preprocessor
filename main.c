@@ -117,11 +117,14 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
             add_into(linkedList,key,value);
         }else if(strstr(line,"#include")){
 
+        }else if(strstr(line,"#undef")){
+            //TODO: delete the node with key after undef
         }
     }else{
         prepare(line,linkedList);
+        fprintf(file_out,"%s\n",line);
     }
-    fprintf(file_out,"%s\n",line);
+    
 
 }
 
