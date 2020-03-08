@@ -168,7 +168,7 @@ void addSymbol(char **arguments,int index, LinkedList* linkedList){
             add_into(linkedList,key,value);
         }else{
             char temp[55];
-            memcpy(temp,arguments,strlen(arguments[index+1])+1);
+            memcpy(temp,arguments[index+1],strlen(arguments[index+1])+1);
             char *key,*value;
             key = strtok(temp,"=");
             if(key!=NULL){
