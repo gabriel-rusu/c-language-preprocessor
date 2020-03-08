@@ -1,5 +1,0 @@
-int main() {
-    printf("%d\n", 10);
-    int x = 10 + 15 + 20;
-    return 0;
-}
