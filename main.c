@@ -37,6 +37,7 @@ int process(FILE *file_in,FILE *file_out,LinkedList *linkedList);
 
 
 void add_into(LinkedList * linkedList,char *key,char *value){
+    (linkedList->size)++;
     if(!(linkedList->head)){
         linkedList->head = malloc(sizeof(Node));
         linkedList->head->key = strdup(key);
@@ -49,6 +50,15 @@ void add_into(LinkedList * linkedList,char *key,char *value){
         linkedList->head->value = strdup(value);
         linkedList->head->address = oldHead;
     }
+}
+
+bool search(char *word,LinkedList *linkedList){
+    Node *head = linkedList->head;
+    while(head){
+        if(strcmp(head->key,word)==0)
+            return true;
+    }
+    return false;
 }
 
 void delete(Node *node){
@@ -176,7 +186,7 @@ void addSymbol(char **arguments,int index, LinkedList* linkedList){
                 if(!value)
                     value = "";
             }else value="";
-            printf("key: %s\nvalue: %s\n",key,value);
+            // printf("key: %s\nvalue: %s\n",key,value);
             add_into(linkedList,key,value);
         }
     
