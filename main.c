@@ -164,6 +164,7 @@ void addSymbol(char **arguments,int index, LinkedList* linkedList){
             else value="";
             add_into(linkedList,key,value);
         }else{
+            printf("%s",arguments[index]);
             char temp[55];
             memcpy(temp,arguments,strlen(arguments[index])+1);
             char *key,*value;
@@ -171,6 +172,7 @@ void addSymbol(char **arguments,int index, LinkedList* linkedList){
             if(key!=NULL)
                 value = strtok(NULL,"=");
             else value="";
+            printf("key: %s\nvalue: %s\n",key,value);
             add_into(linkedList,key,value);
         }
     
