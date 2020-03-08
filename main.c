@@ -128,6 +128,7 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
         prepare(line,linkedList);
         printf("%s\n",line);
         fprintf(file_out,"%s\n",line);
+        fflush(file_out);
     }
     
 
