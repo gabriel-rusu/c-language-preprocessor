@@ -237,7 +237,6 @@ void addSymbol(char **arguments,int* index, LinkedList* linkedList,int argc){
                 if(!value)
                     value = "";
             }else value="";
-            printf("key: %s\nvalue: %s\n",key,value);
             add_into(linkedList,key,value);
             (*index)++;
         }
