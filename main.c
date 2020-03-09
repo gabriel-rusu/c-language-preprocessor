@@ -29,7 +29,7 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList);
 void verify_write_for(char *line){
     printf("Mesaj: %s\n",line);
 }
-
+void deleteFromList(char *key,LinkedList *linkedList);
 int create_new(LinkedList ** linkedList);
 int process_arguments(char **arguments,int argument_count,LinkedList *linkedList,FILE **file_in,FILE **file_out);
 bool is_invalid_flag(char *argument);
@@ -107,14 +107,16 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
     char delimiters[] = " \n";
     char *word=NULL,*key=NULL,*value=NULL;
    
-    strcpy(temp,line);
+    
     if(strchr(line,'#')){
         if(strstr(line,"#define")){
+            prepare(line,linkedList);
+            strcpy(temp,line);
             word = strtok(temp,delimiters);
             if(word)
                 key = strtok(NULL,delimiters);
             if(key){
-                value = strtok(NULL,delimiters);
+                value = strtok(NULL,"\n");
                 if(!value)
                     value = "";
             }
@@ -122,12 +124,36 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
         }else if(strstr(line,"#include")){
             
         }else if(strstr(line,"#undef")){
-            //TODO: delete the node with key after undef
+            prepare(line,linkedList);
+            strcpy(temp,line);
+            word = strtok(temp,delimiters);
+            if(word)
+                key = strtok(NULL,delimiters);
+            deleteFromList(key,linkedList);
         }
     }else{
         prepare(line,linkedList);
         if(strlen(line)!=1)
         fprintf(file_out,"%s",line);
+    }
+}
+
+void deleteFromList(char *key,LinkedList *linkedList){
+    Node *head = linkedList->head;
+    Node *next = head->address;
+    if(strcmp(head->key,key)==0){
+        linkedList->head = head->address;
+        free(head->key);
+        free(head->value);
+        return;
+    }
+    while(next){
+        if(next!=NULL && strcmp(next->key,key)==0){
+            head->address = next->address;
+            free(next->key);
+            free(next->value);
+            return;
+        }
     }
 }
 
