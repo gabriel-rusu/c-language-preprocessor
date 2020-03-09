@@ -109,7 +109,7 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
     static bool write = true;
    //TODO: verify how you free the memory for test 9
     
-    if(strchr(line,'#')&&(strchr(line,'\"')==NULL)){
+    if(strchr(line,'#')&&(strstr(line,"\"#define")==NULL)){
         if(strstr(line,"#define")){
             prepare(line,linkedList);
             strcpy(temp,line);
