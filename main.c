@@ -106,7 +106,8 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
     char temp[BUFFER_SIZE];
     char delimiters[] = " \n";
     char *word=NULL,*key=NULL,*value=NULL;
-   
+    static bool write = true;
+   //TODO: verify how you free the memory for test 9
     
     if(strchr(line,'#')){
         if(strstr(line,"#define")){
@@ -123,6 +124,22 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
             add_into(linkedList,key,value);
         }else if(strstr(line,"#include")){
             
+        }else if(strstr(line,"#if")){
+            prepare(line,linkedList);
+            strcpy(temp,line);
+            word = strtok(temp,delimiters);
+            if(word)
+                write = atoi(strtok(NULL,delimiters));
+        }else if(strstr(line,"#elif")&&write==false){
+            prepare(line,linkedList);
+            strcpy(temp,line);
+            word = strtok(temp,delimiters);
+            if(word)
+                write = atoi(strtok(NULL,delimiters));
+        }else if(strstr(line,"#else")&&write==false){
+            write=true;
+        }else if(strstr(line,"#endif")){
+            write=true;
         }else if(strstr(line,"#undef")){
             strcpy(temp,line);
             word = strtok(temp,delimiters);
@@ -131,9 +148,11 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
             deleteFromList(key,linkedList);
         }
     }else{
-        prepare(line,linkedList);
-        if(strlen(line)!=1)
-        fprintf(file_out,"%s",line);
+        if(write){
+            prepare(line,linkedList);
+            if(strlen(line)!=1)
+            fprintf(file_out,"%s",line);
+        }
     }
 }
 
