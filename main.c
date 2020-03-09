@@ -47,6 +47,7 @@ char * getValueOf(char *key,LinkedList *linkedList);
 void delete(Node *node);
 void freeList(LinkedList **linkedList);
 void deleteList(LinkedList* list);
+bool find(char *key,LinkedList *linkedList);
 
 
 int main(int argc ,char **argv)
@@ -122,6 +123,22 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
                     value = "";
             }
             add_into(linkedList,key,value);
+        }else if(strstr(line,"#ifdef")){
+            strcpy(temp,line);
+            word = strtok(temp,delimiters);
+            if(word)
+                key = strtok(NULL,delimiters);
+            if(find(key,linkedList))
+                write = true;
+            else write = false;
+        }else if(strstr(line,"#ifndef")){
+            strcpy(temp,line);
+            word = strtok(temp,delimiters);
+            if(word)
+                key = strtok(NULL,delimiters);
+            if(find(key,linkedList))
+                write = false;
+            else write = true;
         }else if(strstr(line,"#include")){
             
         }else if(strstr(line,"#if")){
@@ -197,7 +214,15 @@ bool is_file(char * name,char * extension){
     return strstr(name,extension)!=NULL;
 }
 
-
+bool find(char *key,LinkedList *linkedList){
+    Node *head = linkedList->head;
+    while(head){
+        if(strcmp(head->key,key)==0)
+            return true;
+        head= head->address;
+    }
+    return false;
+}
 
 void verify(void *pointer,int line_number){
     if(pointer==NULL)
