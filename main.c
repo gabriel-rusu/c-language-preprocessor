@@ -124,7 +124,6 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
         }else if(strstr(line,"#include")){
             
         }else if(strstr(line,"#undef")){
-            prepare(line,linkedList);
             strcpy(temp,line);
             word = strtok(temp,delimiters);
             if(word)
