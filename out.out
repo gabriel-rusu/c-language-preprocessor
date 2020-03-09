@@ -1,4 +1,7 @@
 int main() {
-	printf("True!\n");
-	return 0;
+    printf("ABC\n");
+    printf("#defines working in #ifs\n");
+    int y = 1 + 1;
+    printf("%d\n", 1);
+    return 0;
 }
