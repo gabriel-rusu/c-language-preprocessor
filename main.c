@@ -262,7 +262,7 @@ void addSymbol(char **arguments,int* index, LinkedList* linkedList,int argc){
     if(strstr(arguments[*index],SYMBOL_FLAG)&&strlen(arguments[*index])>2)
         {
             char temp[55];
-            memcpy(temp,&(arguments[*index][1]),strlen(&(arguments[*index][1]))+1);
+            strcpy(temp,&(arguments[*index][2]));
             char *key,*value;
             key = strtok(temp,"=");
             if(key!=NULL){
