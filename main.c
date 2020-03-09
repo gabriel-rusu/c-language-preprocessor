@@ -136,8 +136,11 @@ void process_input(char *line,FILE *file_out,LinkedList * linkedList){
             word = strtok(temp,delimiters);
             if(word)
                 write = atoi(strtok(NULL,delimiters));
-        }else if(strstr(line,"#else")&&write==false){
-            write=true;
+            printf("temp: %s",temp);
+        }else if(strstr(line,"#elif")&&write==true){
+            write=false;
+        }else if(strstr(line,"#else")){
+            write=!write;
         }else if(strstr(line,"#endif")){
             write=true;
         }else if(strstr(line,"#undef")){
