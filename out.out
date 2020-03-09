@@ -1,5 +1,2 @@
-int main()
-{
-	printf("DEBUG\n");
-	return 0;
-}
+/home/legion/Desktop/Mini-C-Language-Preprocessor
+test32.hAllocation error on line 151!
