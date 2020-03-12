@@ -70,8 +70,8 @@ init_test()
 
 cleanup_test()
 {
-	# rm -f $out_f
-	echo ""
+	rm -f $out_f
+	# echo ""
 }
 
 init_world()
@@ -82,8 +82,8 @@ init_world()
 
 cleanup_world()
 {
-	# rm -rf $OUT_DIR &> /dev/null
-	echo ""
+	rm -rf $OUT_DIR &> /dev/null
+	# echo ""
 }
 
 # ---------------------------------------------------------------------------- #

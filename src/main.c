@@ -1,5 +1,3 @@
-
-
 #include "list.h"
 #include "utils.h"
 #include "lineproc.h"
@@ -47,8 +45,11 @@ int main(int argc, char **argv)
     process(temp1, file_out, linkedList, file_list);
     fclose(temp1);
 
+
     freeList(&linkedList);
     freeList(&file_list);
+    remove("temp.out");
+    remove("temp1.out");
     fclose(file_out);
     fclose(file_in);
     return 0;
@@ -64,7 +65,6 @@ void process_input(char *line, FILE *file_out, LinkedList *linkedList, LinkedLis
     char delimiters[] = " \n";
     char *word = NULL, *key = NULL, *value = NULL;
     static bool write = true;
-    //TODO: verify how you free the memory for test 9
 
     if (strchr(line, '#') && (strstr(line, "\"#define") == NULL))
     {

@@ -16,6 +16,7 @@
 #define INPUT_FILE_EXTENSION ".in"
 #define OUTPUT_FILE_EXTENSION ".out"
 #define INVALID_FILE_EXTENSION "."
+#define ALL_DELIMITERS "\t []{}<>=+-*/%!&|^.,:;()"
 
 
 

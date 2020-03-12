@@ -1,0 +1,107 @@
+make[1]: Entering directory '/mnt/d/Projects/Mini-C-Language-Preprocessor/test'
+
+                       = Testing - SO Preprocessor =
+
+'checkpatch.pl' tool not found on your system. Skipping source check...
+Please download 'checkpatch.pl' from 'https://raw.githubusercontent.com/torvalds/linux/master/scripts/checkpatch.pl' and install it in your $PATH.
+
+00) Sources check...........................................failed  [ 0/95]
+ARGUMENT PROCESSING FAILED
+01) Test bad input..........................................passed  [01/95]
+ARGUMENT PROCESSING FAILED
+02) Test bad parameters.....................................passed  [01/95]
+ARGUMENT PROCESSING FAILED
+03) Test multiple files.....................................passed  [01/95]
+04) Test stdin file.........................................passed  [01/95]
+04) Test stdin file - memcheck..............................passed  [01/95]
+05) Test simple file........................................passed  [01/95]
+05) Test simple file - memcheck.............................passed  [01/95]
+06) Test simple out file....................................passed  [01/95]
+06) Test simple out file - memcheck.........................passed  [01/95]
+07) Test simple define......................................passed  [02/95]
+07) Test simple define - memcheck...........................passed  [01/95]
+08) Test param define.......................................passed  [02/95]
+08) Test param define - memcheck............................passed  [01/95]
+09) Test simple define/undef................................passed  [02/95]
+09) Test simple define/undef - memcheck.....................failed  [ 0/95]
+10) Test multiple defines...................................passed  [02/95]
+10) Test multiple defines - memcheck........................passed  [01/95]
+11) Test nested defines.....................................passed  [03/95]
+11) Test nested defines - memcheck..........................passed  [01/95]
+_test/outputs/test12.out vs _test/outputs/test12.ref:
+--- _test/outputs/test12.out	2020-03-12 08:16:05.928126900 +0200
++++ _test/outputs/test12.ref	2020-03-12 08:16:05.382711100 +0200
+@@ -1,8 +1,5 @@
+-        + 2\
+-        + 3\
+-        + 4
+ int main() {
+-    int y = 1 \ + 1;
+-    printf("%d\n", 1 \);
++    int y = 1 + 2 + 3 + 4 + 1;
+12) Test multi-lines defines................................failed  [ 0/95]
+12) Test multi-lines defines - memcheck.....................passed  [01/95]
+13) Test simple if true.....................................passed  [01/95]
+13) Test simple if true - memcheck..........................passed  [01/95]
+14) Test simple if false....................................passed  [01/95]
+14) Test simple if false - memcheck.........................passed  [01/95]
+15) Test define if true.....................................passed  [01/95]
+15) Test define if true - memcheck..........................passed  [01/95]
+16) Test define if false....................................passed  [01/95]
+16) Test define if false - memcheck.........................passed  [01/95]
+17) Test simple if-else true................................passed  [01/95]
+17) Test simple if-else true - memcheck.....................passed  [01/95]
+18) Test simple if-else false...............................passed  [01/95]
+18) Test simple if-else false - memcheck....................passed  [01/95]
+19) Test define if-else true................................passed  [01/95]
+19) Test define if-else true - memcheck.....................passed  [01/95]
+20) Test define param if-else false.........................passed  [01/95]
+20) Test define param if-else false - memcheck..............passed  [01/95]
+21) Test simple elif false..................................passed  [01/95]
+21) Test simple elif false - memcheck.......................passed  [01/95]
+22) Test simple elif true...................................passed  [01/95]
+22) Test simple elif true - memcheck........................passed  [01/95]
+23) Test simple elif-else true..............................passed  [01/95]
+23) Test simple elif-else true - memcheck...................passed  [01/95]
+24) Test simple elif-else false.............................passed  [01/95]
+24) Test simple elif-else false - memcheck..................passed  [01/95]
+25) Test complex if-elif-else...............................passed  [02/95]
+25) Test complex if-elif-else - memcheck....................passed  [01/95]
+26) Test simple ifdef false.................................passed  [01/95]
+26) Test simple ifdef false - memcheck......................passed  [01/95]
+27) Test simple ifdef true..................................passed  [01/95]
+27) Test simple ifdef true - memcheck.......................passed  [01/95]
+28) Test simple ifndef......................................passed  [01/95]
+28) Test simple ifndef - memcheck...........................passed  [01/95]
+29) Test simple ifndef undef................................passed  [01/95]
+29) Test simple ifndef undef - memcheck.....................failed  [ 0/95]
+Allocation error on line 123!
+30) Test bad include........................................passed  [01/95]
+31) Test double define params...............................passed  [01/95]
+31) Test double define params - memcheck....................passed  [01/95]
+32) Test simple include.....................................passed  [02/95]
+32) Test simple include - memcheck..........................passed  [01/95]
+33) Test include directory..................................passed  [01/95]
+33) Test include directory - memcheck.......................passed  [01/95]
+34) Test include param......................................passed  [01/95]
+34) Test include param - memcheck...........................passed  [01/95]
+35) Test include order......................................passed  [01/95]
+35) Test include order - memcheck...........................passed  [01/95]
+_test/outputs/test36.out vs _test/outputs/test36.ref:
+--- _test/outputs/test36.out	2020-03-12 08:16:21.357541000 +0200
++++ _test/outputs/test36.ref	2020-03-12 08:16:20.785150000 +0200
+@@ -1,5 +1,5 @@
+ int main()
+ {
+-	printf("VAR = %d\n", 2);
++ printf("VAR = %d\n", 1);
+ 	return 0;
+ }
+36) Test include order no main..............................failed  [ 0/95]
+36) Test include order no main - memcheck...................passed  [01/95]
+37) Test include guard......................................passed  [02/95]
+37) Test include guard - memcheck...........................passed  [01/95]
+38) Test everything.........................................failed  [ 0/95]
+
+                                                            Total:  [75/95]
+make[1]: Leaving directory '/mnt/d/Projects/Mini-C-Language-Preprocessor/test'
