@@ -12,7 +12,7 @@ PARAMS= -DDEBUG
 
 
 move: build
-	cd ./checker/multi/; make -f Makefile.checker > result.out
+	cd ./checker/; make -f Makefile.checker > result.out
 build: 
 	$(CC) $(SOURCE) $(FLAGS) $(EXECUTABLE_PATH)
 	
