@@ -30,11 +30,9 @@ The C Preprocessor is not a part of the compiler, but is a separate step in the 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See [deployment](#deployment) for notes on how to deploy the project on a live system.
 
 ### Prerequisites
-What things you need to install the software and how to install them.
-
-```
-Give examples
-```
+To run the preprocessor on your computer you must have:
+* gcc - is a tool from the [GNU Compiler Collection](https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/) used to compile and link C programs - on **Linux**
+* cl -  is a tool that controls the [Microsoft C++](https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options?view=vs-2019) compiler and linker - on **Windows**
 
 ### Installing
 A step by step series of examples that tell you how to get a development env running.
