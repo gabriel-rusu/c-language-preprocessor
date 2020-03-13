@@ -1,6 +1,6 @@
 <h1 align="center">C Language Preprocessor</h1>
 
-<p align="center"> Few lines describing your project.
+<p align="justify"> This is a simple C/C++ preprocessor. The goal is to have good conformance with the C and C++ standards and to handle nonstandard preprocessor extensions in gcc / clang / visual studio preprocessors. Most of the preprocessor testcases in gcc and clang are handled OK by simplecpp.
     <br> 
 </p>
 
