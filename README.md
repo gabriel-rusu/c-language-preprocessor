@@ -31,8 +31,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 To run the preprocessor on your computer you must have:
-* gcc - is a tool from the [GNU Compiler Collection](https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/) used to compile and link C programs - on **Linux**
-* cl -  is a tool that controls the [Microsoft C++](https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options?view=vs-2019) compiler and linker - on **Windows**
+* for **UNIX** based operating systems: 
+    * **gcc** - is a tool from the [GNU Compiler Collection](https://linuxize.com/post/how-to-install-gcc-compiler-on-ubuntu-18-04/) used to compile and link C programs
+* for **Windows** operating system: 
+    * **cl** -  is a tool that controls the [Microsoft C++](https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options?view=vs-2019) compiler and linker
 
 ### Installing
 A step by step series of examples that tell you how to get a development env running.
