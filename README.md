@@ -37,12 +37,12 @@ To run the preprocessor on your computer you must have:
     * **cl** -  is a tool that controls the [Microsoft C++](https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options?view=vs-2019) compiler and linker
 
 ### Installing
-A step by step series of examples that tell you how to get a development env running.
+This is a step by step series of examples that tell you how to get a development env running.
 
 * **Linux**:
     * start by updating the packages list
         ```bash
-            $ sudo apt update
+        $ sudo apt update
         ```
     * install the build-essential package(a package of new packages including gcc, g++ and make) by typing:
         ```bash
