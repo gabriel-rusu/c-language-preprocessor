@@ -7,23 +7,15 @@
 ## 📝 Table of Contents
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Deployment](#deployment)
 - [Usage](#usage)
 - [Built Using](#built_using)
-- [TODO](../TODO.md)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
-- [Acknowledgments](#acknowledgement)
 
 ## 🧐 About <a name = "about"></a>
 The C Preprocessor is not a part of the compiler, but is a separate step in the compilation process. In simple terms, a C Preprocessor is just a text substitution tool and it instructs the compiler to do required pre-processing before the actual compilation.
 
 
-
-
 <img src="./res/Preprocessor-In-C.png">
-
-
 
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
@@ -41,37 +33,39 @@ This is a step by step series of examples that tell you how to get a development
 
 * **Linux**:
     * start by updating the packages list
-        ```bash
+        ```shell-script
         $ sudo apt update
         ```
     * install the build-essential package(a package of new packages including gcc, g++ and make) by typing:
-        ```bash
+        ```shell-script
         $ sudo apt install build-essential 
         ```
 * **Windows**:
     * all you need to do to install **cl** on your machine is to install the [*Microsoft Visual Studio Comunity Edition*](https://visualstudio.microsoft.com/).
 
 ## 🔧 Running the tests <a name = "tests"></a>
-Explain how to run the automated tests for this system.
+If you want to run the automated tests for Linux system you must follow the following steps:
+* clone the repository by copping the following command in your terminal:
+    ```bash
+    git clone https://github.com/RusuGabriel/C-Language-Preprocessor.git
+    ```
+* go into the project director and run the following command:
+    ```bash
+    $ make test
+    ```
+* now in the test director a new folder **_test/outputs** has appeared containing the results.
 
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-Explain what these tests test and why
-
-```
-Give an example
-```
+The purpose of the test suite is to show the preprocessing of .c and .h files from the **_test/inputs** folder. The results of the preprocessed files is then compared with the CPP output (utilitary of GCC that is used to preprocess the .c and .h files for the GCC compiler) 
 
 ## 🎈 Usage <a name="usage"></a>
-Add notes about how to use the system.
+To use the preprocessor on other files, simply use the following command:
+```bash
+    ./so-cpp < your-input-file.in >your-output-file.out
+```
+where:
+* your-input-file.in - is a custom input file
+* your-output-file.out - is the result of pteprocessing the input file
 
-## 🚀 Deployment <a name = "deployment"></a>
-Add additional notes about how to deploy this on a live system.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 - [Visual Studio Code](https://code.visualstudio.com/) - code editor
@@ -80,8 +74,3 @@ Add additional notes about how to deploy this on a live system.
 
 ## ✍️ Author <a name = "authors"></a>
 - [@Rusu Gabriel](https://github.com/RusuGabriel) - Idea & Initial work
-
-## 🎉 Acknowledgements <a name = "acknowledgement"></a>
-- Hat tip to anyone whose code was used
-- Inspiration
-- References
