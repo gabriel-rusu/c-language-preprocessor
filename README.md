@@ -39,24 +39,21 @@ To run the preprocessor on your computer you must have:
 ### Installing
 A step by step series of examples that tell you how to get a development env running.
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo.
+* **Linux**:
+    * start by updating the packages list
+        ```bash
+            $ sudo apt update
+        ```
+    * install the build-essential package(a package of new packages including gcc, g++ and make) by typing:
+        ```bash
+        $ sudo apt install build-essential 
+        ```
+* **Windows**:
+    * all you need to do to install **cl** on your machine is to install the [*Microsoft Visual Studio Comunity Edition*](https://visualstudio.microsoft.com/).
 
 ## 🔧 Running the tests <a name = "tests"></a>
 Explain how to run the automated tests for this system.
 
-### Break down into end to end tests
 Explain what these tests test and why
 
 ```
@@ -77,15 +74,12 @@ Add notes about how to use the system.
 Add additional notes about how to deploy this on a live system.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
-- [MongoDB](https://www.mongodb.com/) - Database
-- [Express](https://expressjs.com/) - Server Framework
-- [VueJs](https://vuejs.org/) - Web Framework
-- [NodeJs](https://nodejs.org/en/) - Server Environment
+- [Visual Studio Code](https://code.visualstudio.com/) - code editor
+- [GCC](https://gcc.gnu.org/) - used to compile the program on my Linux machine
+- [CPP](https://www.codeproject.com/Articles/3853/Wave-a-Standard-conformant-C-preprocessor-library) - preprocessing utility used to test the program output
 
-## ✍️ Authors <a name = "authors"></a>
-- [@kylelobo](https://github.com/kylelobo) - Idea & Initial work
-
-See also the list of [contributors](https://github.com/kylelobo/The-Documentation-Compendium/contributors) who participated in this project.
+## ✍️ Author <a name = "authors"></a>
+- [@Rusu Gabriel](https://github.com/RusuGabriel) - Idea & Initial work
 
 ## 🎉 Acknowledgements <a name = "acknowledgement"></a>
 - Hat tip to anyone whose code was used
