@@ -47,7 +47,7 @@ This is a step by step series of examples that tell you how to get a development
 If you want to run the automated tests for Linux system you must follow the following steps:
 * clone the repository by copping the following command in your terminal:
     ```bash
-    git clone https://github.com/RusuGabriel/C-Language-Preprocessor.git
+    git clone https://github.com/gabriel-rusu/C-Language-Preprocessor.git
     ```
 * go into the project director and run the following command:
     ```bash
@@ -73,4 +73,4 @@ where:
 - [CPP](https://www.codeproject.com/Articles/3853/Wave-a-Standard-conformant-C-preprocessor-library) - preprocessing utility used to test the program output
 
 ## ✍️ Author <a name = "authors"></a>
-- [@Rusu Gabriel](https://github.com/RusuGabriel) - Idea & Initial work
+- [@gabriel-rusu](https://github.com/gabriel-rusu) - Idea & Initial work
